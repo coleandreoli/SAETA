@@ -1,0 +1,24 @@
+path: datasets
+train: images/train
+test: images/test
+val: images/val
+nc: 18
+names:
+  "0": "person"
+  "1": "car"
+  "2": "motorcycle"
+  "3": "airplane"
+  "4": "bus"
+  "5": "boat"
+  "6": "stop sign"
+  "7": "snowboard"
+  "8": "umbrella"
+  "9": "soccer ball"
+  "10": "basketball"
+  "11": "volleyball"
+  "12": "football"
+  "13": "baseball bat"
+  "14": "bed"
+  "15": "tennis racket"
+  "16": "suitcase"
+  "17": "skis"
