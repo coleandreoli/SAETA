@@ -22,14 +22,23 @@
 
 # Datasets
 
+[Our Combined Dataset from 2025 SUAS](https://app.roboflow.com/suas-gyf9o/2025_suas-fkngn/1)
+
 - [DOTADataset](https://www.kaggle.com/datasets/chandlertimm/dota-data)
+  ![alt text](DOTADataset_examples.png)
 - [VisDrone Dataset](https://docs.ultralytics.com/datasets/detect/visdrone/)
 - [Roboflow](https://universe.roboflow.com/)
 
-[Upload dataset](https://docs.roboflow.com/developer/command-line-interface/upload-a-dataset)
+# Tools
 
-[Format Converter](https://github.com/ISSResearch/Dataset-Converters)
+- [Format Converter](https://github.com/ISSResearch/Dataset-Converters)
+- [Upload dataset](https://docs.roboflow.com/developer/command-line-interface/upload-a-dataset)
+- [Supervision](https://github.com/roboflow/supervision)
+- [AlbumentationsX](https://github.com/albumentations-team/AlbumentationsX)
+- [sahi](https://github.com/obss/sahi)
+- [fiftyone](https://github.com/voxel51/fiftyone)
 
 # Hardware
 
-- Jetson Orion NX
+- [SIYI A8](https://shop.siyi.biz/products/siyi-a8-mini-gimbal-camera)
+- [Jetson Orion Nano Super](https://docs.rs-online.com/4051/A700000009607470.pdf)
