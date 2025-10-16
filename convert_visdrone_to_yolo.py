@@ -19,6 +19,7 @@ import shutil
 
 from ultralytics.utils.downloads import download
 from ultralytics.utils import TQDM
+import fiftyone as fo
 
 # # Classes
 dataset_map = {
@@ -139,6 +140,51 @@ def visdrone2SAETA(dpath):
             # Write back the converted annotations
             with open(txt_file, "w") as f:
                 f.writelines(new_lines)
+
+
+def load_datasets_from_dirs(dataset_name, base_dirs, splits=["train", "valid", "test"]):
+    """
+    Load multiple COCO datasets from base directories into a single FiftyOne dataset.
+
+    Args:
+        dataset_name: Name for the combined FiftyOne dataset
+        base_dirs: List of base directory paths (e.g., ["test-2", "2026_SUAS-2"])
+        splits: List of split names to load (default: ["train", "valid", "test"])
+
+    Returns:
+        FiftyOne Dataset
+    """
+    # Delete existing dataset
+    try:
+        fo.delete_dataset(dataset_name)
+    except:
+        pass
+
+    dataset = fo.Dataset(name=dataset_name)
+
+    # Construct splits from base directories
+    all_splits = []
+    for base_dir in base_dirs:
+        for split in splits:
+            data_path = f"{base_dir}/{split}"
+            labels_path = f"{base_dir}/{split}/_annotations.coco.json"
+            all_splits.append((data_path, labels_path, split))
+
+    # Load all splits
+    for data_path, labels_path, tag in all_splits:
+        print(f"Loading {tag} from {data_path}...")
+        dataset.add_dir(
+            dataset_type=fo.types.COCODetectionDataset,
+            data_path=data_path,
+            labels_path=labels_path,
+            tags=tag,
+            progress=True,
+        )
+
+    print(f"\n{dataset}")
+    print(f"Total samples: {len(dataset)}")
+
+    return dataset
 
 
 if __name__ == "__main__":
