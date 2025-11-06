@@ -142,7 +142,9 @@ def visdrone2SAETA(dpath):
                 f.writelines(new_lines)
 
 
-def load_datasets_from_dirs(dataset_name, base_dirs, splits=["train", "valid", "test"]):
+def load_datasets_from_dirs(
+    dataset_name, base_dirs, splits=["train", "valid", "test"], persistent=False
+):
     """
     Load multiple COCO datasets from base directories into a single FiftyOne dataset.
 
@@ -154,13 +156,8 @@ def load_datasets_from_dirs(dataset_name, base_dirs, splits=["train", "valid", "
     Returns:
         FiftyOne Dataset
     """
-    # Delete existing dataset
-    try:
-        fo.delete_dataset(dataset_name)
-    except:
-        pass
 
-    dataset = fo.Dataset(name=dataset_name)
+    dataset = fo.Dataset(name=dataset_name, persistent=persistent)
 
     # Construct splits from base directories
     all_splits = []
